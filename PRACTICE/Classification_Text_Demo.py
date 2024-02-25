@@ -13,6 +13,7 @@ import pickle
 
 def create_data_set():
     with open('data.txt', 'w', encoding='utf8') as outfile:
+        print();
         
 
 if __name__ == '__main__':
