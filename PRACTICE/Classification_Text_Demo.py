@@ -11,10 +11,11 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn import metrics
 import pickle
 
+
 def create_data_set():
     with open('data.txt', 'w', encoding='utf8') as outfile:
-        print();
-        
+        print()
+
 
 if __name__ == '__main__':
     create_data_set()
