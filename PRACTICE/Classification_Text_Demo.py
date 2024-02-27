@@ -35,9 +35,17 @@ def setup_docs():
             docs.append(doc)
         return docs
 
+def clean_text(text):
+    # remove punctuation
+    text = text.translate(str.maketrans('', '', string.punctuation))
+    # convert to lower case
+    text = text.lower()
+    return text
+
 def print_frequency_dist(docs):
     tokens = defaultdict(list)
     # lets make a giant list of all the words for each category
+    # hãy tạo một danh sách khổng lồ gồm tất cả các từ cho mỗi danh mục
     for doc in docs:
         doc_label = doc[0]
         doc_text = doc[1]
