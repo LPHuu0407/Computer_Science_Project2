@@ -108,13 +108,26 @@ def train_classifier(docs):
     evaluate_classifier("Naive Bayes\tTRAI\t", naive_bayes_classifier, vectorizer, X_train, y_train)
     evaluate_classifier("Naive Bayes\tTEST\t", naive_bayes_classifier, vectorizer, X_test, y_test)
 
-    # # store the classifier 
-    # clf_filename = 'naive_bayes_classifier.pkl'
-    # pickle.dump(naive_bayes_classifier, open(clf_filename, 'wb'))
+    # store the classifier 
+    clf_filename = 'naive_bayes_classifier.pkl'
+    pickle.dump(naive_bayes_classifier, open(clf_filename, 'wb'))
 
-    # # also store the vectorizer so we transform new data
-    # vec_filename = 'count_vectorizer.pkl'
-    # pickle.dump(vectorizer, open(vec_filename, 'wb'))
+    # also store the vectorizer so we transform new data
+    vec_filename = 'count_vectorizer.pkl'
+    pickle.dump(vectorizer, open(vec_filename, 'wb'))
+
+def classify(text):
+    # load classifier
+    clf_filename = 'naive_bayes_classifier.pkl'
+    nb_clf = pickle.load(open(clf_filename, 'rb'))
+
+    # vectorize the new text
+    vec_filename = 'count_vectorizer.pkl'
+    vectorizer = pickle.load(open(vec_filename, 'rb'))
+
+    pred = nb_clf.predict(vectorizer.transform([text]))
+
+    print(pred[0])
 
 if __name__ == '__main__':
     #create_data_set()
