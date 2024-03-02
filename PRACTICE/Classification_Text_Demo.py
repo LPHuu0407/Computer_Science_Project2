@@ -118,11 +118,11 @@ def train_classifier(docs):
 
 def classify(text):
     # load classifier
-    clf_filename = 'naive_bayes_classifier.pkl'
+    clf_filename = 'D:\\MYLEARNING\\THE_JOURNEY_IV\\COMPUTER_SCIENCE_PROJECT_2\\naive_bayes_classifier.pkl'
     nb_clf = pickle.load(open(clf_filename, 'rb'))
 
     # vectorize the new text
-    vec_filename = 'count_vectorizer.pkl'
+    vec_filename = 'D:\\MYLEARNING\\THE_JOURNEY_IV\\COMPUTER_SCIENCE_PROJECT_2\\count_vectorizer.pkl'
     vectorizer = pickle.load(open(vec_filename, 'rb'))
 
     pred = nb_clf.predict(vectorizer.transform([text]))
@@ -131,9 +131,9 @@ def classify(text):
 
 if __name__ == '__main__':
     #create_data_set()
-    docs = setup_docs()
+    #docs = setup_docs()
     #print_frequency_dist(docs)
-    train_classifier(docs)
-    # new_doc = "Google showed..."
-    #classify(new_doc)
+    #train_classifier(docs)
+    new_doc = "Christian Gunter fired the mid-table hosts into a lead with a fine 20-yard strike. Bayern thought they had turned it round through Mathys Tel's excellent curling effort and Jamal Musiala's placed shot after a solo run."
+    classify(new_doc)
     print("Done")
