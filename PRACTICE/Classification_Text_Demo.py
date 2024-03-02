@@ -1,4 +1,3 @@
-import os
 import random
 import string
 from nltk import word_tokenize
@@ -10,26 +9,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn import metrics
 import pickle
-
+from Create_Dataset import create_data_set
+# loại bỏ các stopwords
 stop_words = set(stopwords.words('english'))
 stop_words.add('said')
 stop_words.add('mr')
-
-# BASE_DIR = 'D:\\MYLEARNING\\THE_JOURNEY_IV\\COMPUTER_SCIENCE_PROJECT_2\\PRACTICE\\bbc'
-# LABELS = ['business', 'entertainment', 'politics', 'sport', 'tech']
-
-
-# def create_data_set():
-#     with open('data.txt', 'w', encoding='utf8') as outfile:
-#         for label in LABELS:
-#             dir = '%s/%s' % (BASE_DIR, label)
-#             for filename in os.listdir(dir):
-#                 fullfilename = '%s/%s' % (dir, filename)
-#                 print(fullfilename)
-#                 with open(fullfilename, 'rb') as file:
-#                     text = file.read().decode(errors= 'replace').replace('\n', '')
-#                     outfile.write('%\t%s\t%s\n' % (label, filename, text))
-
+# Đọc bộ dữ liệu đã được tạo, là bước đầu tiên và quan trọng để mô hình hoạt động
 def setup_docs():
     docs = [] # (label, text)
     with open('D:\MYLEARNING\THE_JOURNEY_IV\COMPUTER_SCIENCE_PROJECT_2\PRACTICE\data.txt', 'r', encoding='utf8') as datafile:
@@ -38,21 +23,21 @@ def setup_docs():
             doc = ( parts[0], parts[2].strip() )
             docs.append(doc)
         return docs
-
+# Làm sạch văn bản, loại bỏ các ký tự, khoảng trắng dư thừa
 def clean_text(text):
     # remove punctuation
     text = text.translate(str.maketrans('', '', string.punctuation))
     # convert to lower case
     text = text.lower()
     return text
- 
+# Tách từ trong văn bản và loại bỏ stopwords
 def get_tokens(text):
     #get individual words
     tokens = word_tokenize(text)
     # remove common words that are useless
     tokens = [t for t in tokens if not t in stop_words]
     return tokens
-
+# Hàm này thực hiện các bước cơ bản, làm sạch văn bản, tách từ
 def print_frequency_dist(docs):
     tokens = defaultdict(list)
     # lets make a giant list of all the words for each category
