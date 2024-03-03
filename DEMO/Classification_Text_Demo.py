@@ -55,7 +55,6 @@ def print_frequency_dist(docs):
         print(category_label)
         fd = FreqDist(category_tokens)
         print(fd.most_common(20))
-
 def get_splits(docs):
     # scramb docs
     random.shuffle(docs)
@@ -71,17 +70,13 @@ def get_splits(docs):
         X_test.append(docs[i][1])
         y_test.append(docs[i][0])
     return X_train, X_test, y_train, y_test
-
 def evaluate_classifier(title, classifier, vectorizer, X_test, y_test):
     X_test_tfidf = vectorizer.transform(X_test)
     y_pred = classifier.predict(X_test_tfidf)
-
     precision = metrics.precision_score(y_test, y_pred, average='macro')
     recall = metrics.recall_score(y_test, y_pred, average='macro')
     f1 = metrics.f1_score(y_test, y_pred, average='macro')
-
     print("%s\t%f\t%f\t%f\n" % (title, precision, recall, f1))
-
 def train_classifier(docs):
     X_train, X_test, y_train, y_test = get_splits(docs)
     # the object that turns text into vector
@@ -90,31 +85,23 @@ def train_classifier(docs):
     dtm = vectorizer.fit_transform(X_train)
     # train Naive Bayes classifier
     naive_bayes_classifier = MultinomialNB().fit(dtm, y_train)
-    
     evaluate_classifier("Naive Bayes\tTRAI\t", naive_bayes_classifier, vectorizer, X_train, y_train)
     evaluate_classifier("Naive Bayes\tTEST\t", naive_bayes_classifier, vectorizer, X_test, y_test)
-
     # store the classifier 
     clf_filename = 'naive_bayes_classifier.pkl'
     pickle.dump(naive_bayes_classifier, open(clf_filename, 'wb'))
-
     # also store the vectorizer so we transform new data
     vec_filename = 'count_vectorizer.pkl'
     pickle.dump(vectorizer, open(vec_filename, 'wb'))
-
 def classify(text):
     # load classifier
     clf_filename = 'D:\\MYLEARNING\\THE_JOURNEY_IV\\COMPUTER_SCIENCE_PROJECT_2\\naive_bayes_classifier.pkl'
     nb_clf = pickle.load(open(clf_filename, 'rb'))
-
     # vectorize the new text
     vec_filename = 'D:\\MYLEARNING\\THE_JOURNEY_IV\\COMPUTER_SCIENCE_PROJECT_2\\count_vectorizer.pkl'
     vectorizer = pickle.load(open(vec_filename, 'rb'))
-
     pred = nb_clf.predict(vectorizer.transform([text]))
-
     print(pred[0])
-
 if __name__ == '__main__':
     #create_data_set()
     #docs = setup_docs()
