@@ -1,3 +1,4 @@
+import tkinter as tk
 import random
 import string
 from nltk import word_tokenize
@@ -119,6 +120,8 @@ if __name__ == '__main__':
     #docs = setup_docs()
     #print_frequency_dist(docs)
     #train_classifier(docs)
-    new_doc = "Christian Gunter fired the mid-table hosts into a lead with a fine 20-yard strike. Bayern thought they had turned it round through Mathys Tel's excellent curling effort and Jamal Musiala's placed shot after a solo run."
+    new_doc = """ The release is the first taste of an entire country album - a follow-up to the house music-focused Renaissance - which Beyoncé has referred to as Act II.
+But while she's blazing trails in a genre where black artists have traditionally struggled to gain recognition, there are a handful of black women who've walked that path before her.
+Rissi Palmer, 42, from Missouri is one of them. She broke a 20-year wait for a black woman to appear on the country charts with her 2007 single Country Girl. Before her, it was Dona Mason in 1987. """
     classify(new_doc)
     print("Done")
