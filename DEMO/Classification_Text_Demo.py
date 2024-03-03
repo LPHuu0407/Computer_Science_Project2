@@ -95,7 +95,7 @@ def train_classifier(docs):
     pickle.dump(vectorizer, open(vec_filename, 'wb'))
 def classify(text):
     # load classifier
-    clf_filename = 'D:\\MYLEARNING\\THE_JOURNEY_IV\\COMPUTER_SCIENCE_PROJECT_2\\naive_bayes_classifier.pkl'
+    clf_filename = 'D:\\MYLEARNING\\THE_JOURNEY_IV\COMPUTER_SCIENCE_PROJECT_2\\naive_bayes_classifier.pkl'
     nb_clf = pickle.load(open(clf_filename, 'rb'))
     # vectorize the new text
     vec_filename = 'D:\\MYLEARNING\\THE_JOURNEY_IV\\COMPUTER_SCIENCE_PROJECT_2\\count_vectorizer.pkl'
@@ -107,8 +107,6 @@ if __name__ == '__main__':
     #docs = setup_docs()
     #print_frequency_dist(docs)
     #train_classifier(docs)
-    new_doc = """ The release is the first taste of an entire country album - a follow-up to the house music-focused Renaissance - which Beyoncé has referred to as Act II.
-But while she's blazing trails in a genre where black artists have traditionally struggled to gain recognition, there are a handful of black women who've walked that path before her.
-Rissi Palmer, 42, from Missouri is one of them. She broke a 20-year wait for a black woman to appear on the country charts with her 2007 single Country Girl. Before her, it was Dona Mason in 1987. """
+    new_doc = """  After 2021’s first entry fared similarly well – and picked up a total of six Academy Awards – the zeitgeist is inevitably comparing director Denis Villeneuve’s sprawling world of “Dune” to those of “Star Wars” and “Lord of the Rings.” With that said, there’s no time like the present to use Arrakis, the desert planet at the heart of “Dune,” as the jumping-off point to explore other amazing sequels in science-fiction, a genre that’s luckily been fertile ground for various second chapters in cinema. """
     classify(new_doc)
     print("Done")
